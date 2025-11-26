@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://YonChunk.github.io</id>
+    <title>Gridea</title>
+    <updated>2025-11-26T09:15:55.666Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://YonChunk.github.io"/>
+    <link rel="self" href="https://YonChunk.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://YonChunk.github.io/images/avatar.png</logo>
+    <icon>https://YonChunk.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[binary search]]></title>
+        <id>https://YonChunk.github.io/post/binary-search/</id>
+        <link href="https://YonChunk.github.io/post/binary-search/">
+        </link>
+        <updated>2025-11-26T07:53:10.000Z</updated>
+        <content type="html"><![CDATA[<p>`/<em>luogu_p2249</em>/<br>
+#include&lt;bits/stdc++.h&gt;</p>
+<p>int bs(std::vector<int>&amp; vec, int obj) {<br>
+int ans = -1;<br>
+auto it = std::lower_bound(vec.begin(), vec.end(), obj);<br>
+if(it != vec.end() &amp;&amp; *it == obj) {<br>
+ans = (it - vec.begin()) + 1;<br>
+return ans;<br>
+}<br>
+return ans;<br>
+}</p>
+<p>void solve() {<br>
+int m, n;<br>
+int tmp;<br>
+std::cin &gt;&gt; m &gt;&gt; n;<br>
+std::vector<int> v(m);<br>
+for(int i = 0; i &lt; m; ++i) {<br>
+std::cin &gt;&gt; v[i];<br>
+}<br>
+for(int j = 0; j &lt; n; ++j) {<br>
+std::cin &gt;&gt; tmp;<br>
+std::cout &lt;&lt; bs(v, tmp) &lt;&lt; ' ';<br>
+}<br>
+}</p>
+<p>int main() {<br>
+std::ios::sync_with_stdio(false);<br>
+std::cin.tie(0);<br>
+solve();<br>
+return 0;<br>
+}</p>
+<p>/<em>luogu_p1873</em>/<br>
+#include&lt;bits/stdc++.h&gt;<br>
+#define ll long long</p>
+<p>ll sum(std::vector<int> &amp;v, int h) {<br>
+ll s = 0;<br>
+auto it = std::lower_bound(v.begin(), v.end(), h);<br>
+for(;it != v.end(); ++it) {<br>
+s += (*it - h);<br>
+}<br>
+return s;<br>
+}</p>
+<p>int bs(std::vector<int> &amp;v, int obj) {<br>
+int mx = 0;<br>
+for(auto it = v.begin(); it != v.end(); ++it) {<br>
+mx = std::max(*it, mx);<br>
+}<br>
+int ans = 0;<br>
+int lt = 0, rt = mx;<br>
+while(lt &lt;= rt) {<br>
+int mid = lt + (rt - lt) / 2;<br>
+if (sum(v, mid) == obj) {<br>
+return mid;<br>
+}<br>
+else if(sum(v, mid) &gt; obj) {<br>
+ans = mid;<br>
+lt = mid + 1;<br>
+}<br>
+else rt = mid - 1;<br>
+}<br>
+return ans;<br>
+}</p>
+<p>void solve() {<br>
+int m, n;</p>
+<pre><code>std::cin &gt;&gt; m &gt;&gt; n;
+std::vector&lt;
+</code></pre>
+<p>int&gt; vec(m);<br>
+for(int i = 0; i &lt; m; ++i) {<br>
+std::cin &gt;&gt; vec[i];<br>
+}<br>
+std::sort(vec.begin(), vec.end());<br>
+int ans = bs(vec, n);<br>
+std::cout &lt;&lt; ans &lt;&lt;'\n';<br>
+}</p>
+<p>int main() {<br>
+std::ios::sync_with_stdio(false);<br>
+std::cin.tie(0);<br>
+solve();<br>
+return 0;<br>
+}<br>
+/<em>If find the first obj appear in array -&gt; move rt<br>
+If find the last - &gt; move lt</em>/`</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Some tips]]></title>
+        <id>https://YonChunk.github.io/post/some-tips/</id>
+        <link href="https://YonChunk.github.io/post/some-tips/">
+        </link>
+        <updated>2025-11-19T16:09:56.000Z</updated>
+        <content type="html"><![CDATA[<p>when: caculate mid of  a + b bt the add &gt; len(int)     &amp; u dont want change to long long:<br>
+<code>int mid = a + (b - a) / 2;</code>(common in binary algorithm)</p>
+<pre><code> lower_bound (find the first n &gt;= obj)
+ upper_bound(find the first n &gt; obj)
+</code></pre>
+]]></content>
+    </entry>
+</feed>
